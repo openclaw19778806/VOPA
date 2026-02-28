@@ -75,7 +75,9 @@
 
         // 更新幻燈片狀態
         currentSlide.classList.remove('active');
-        currentSlide.classList.add(direction === 'next' ? 'prev' : '');
+        if (direction === 'next') {
+            currentSlide.classList.add('prev');
+        }
         
         nextSlide.classList.remove('prev');
         nextSlide.classList.add('active');
@@ -183,13 +185,33 @@
         const currentSlide = elements.slides[state.currentSlide];
         if (!currentSlide) return;
 
+        // 重置所有元素狀態
+        const allAnimatedElements = currentSlide.querySelectorAll(
+            '.hero-title, .hero-tagline, .hero-logos, .logo-item, ' +
+            '.stat-card, .solution-box, .scenario-card, .advantage-card, .revenue-card, ' +
+            '.team-member, .cta-card, .market-card, .timeline-phase, ' +
+            '.problem-card, .flow-step, .flow-arrow, .ai-brain, .ai-benefit-card, ' +
+            '.kpi-card, .dashboard-charts, .dashboard-features, .feature-tag, ' +
+            '.market-stat-item, .business-tier, .phase, .stat-label, ' +
+            '.value-proposition, .time-comparison, .business-goal, .goal-text, ' +
+            '.connector-plus, .connector-arrow, .connector-result, ' +
+            '.tier-icon, .tier-content, .flow-icon, .flow-label, .flow-time'
+        );
+        
+        allAnimatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+        });
+
         // 卡片依序進入動畫
-        const cards = currentSlide.querySelectorAll('.stat-card, .solution-box, .scenario-card, .advantage-card, .revenue-card, .team-member, .cta-card, .market-card, .timeline-phase');
+        const cards = currentSlide.querySelectorAll(
+            '.stat-card, .solution-box, .scenario-card, .advantage-card, .revenue-card, ' +
+            '.team-member, .cta-card, .market-card, .timeline-phase, ' +
+            '.problem-card, .flow-step, .ai-benefit-card, .kpi-card, ' +
+            '.market-stat-item, .business-tier, .phase'
+        );
         
         cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            
             setTimeout(() => {
                 card.style.transition = 'all 0.6s ease';
                 card.style.opacity = '1';
@@ -197,8 +219,54 @@
             }, 100 + index * 100);
         });
 
+        // Hero 頁面特殊動畫
+        if (currentSlide.classList.contains('slide-hero')) {
+            const heroElements = currentSlide.querySelectorAll('.hero-title, .hero-tagline, .hero-logos');
+            heroElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.transition = 'all 0.8s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 300 + index * 200);
+            });
+            
+            const logoItems = currentSlide.querySelectorAll('.logo-item');
+            logoItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 800 + index * 150);
+            });
+        }
+
+        // 流程箭頭動畫
+        const flowArrows = currentSlide.querySelectorAll('.flow-arrow');
+        flowArrows.forEach((arrow, index) => {
+            setTimeout(() => {
+                arrow.style.transition = 'all 0.4s ease';
+                arrow.style.opacity = '1';
+                arrow.style.transform = 'translateX(0)';
+            }, 400 + index * 200);
+        });
+
+        // 文字標籤動畫
+        const textElements = currentSlide.querySelectorAll(
+            '.stat-label, .flow-label, .flow-time, .connector-result, .ai-description, ' +
+            '.dashboard-features, .business-goal, .goal-text, .phase-content'
+        );
+        textElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            }, 200 + index * 50);
+        });
+
         // 數字動畫 - 滾動計數效果
-        const numbers = currentSlide.querySelectorAll('.stat-number, .market-size');
+        const numbers = currentSlide.querySelectorAll(
+            '.stat-number, .market-size, .brain-number, .kpi-value, .market-number, .goal-number'
+        );
         numbers.forEach((num, index) => {
             const target = parseInt(num.getAttribute('data-target')) || 0;
             const suffix = num.getAttribute('data-suffix') || '';
@@ -222,6 +290,24 @@
                 }, 300);
             }
         });
+
+        // 儀表板 KPI 卡片特殊動畫
+        const kpiCards = currentSlide.querySelectorAll('.kpi-card');
+        kpiCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            }, 300 + index * 100);
+        });
+
+        // 確保所有元素最終都顯示
+        setTimeout(() => {
+            allAnimatedElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }, 2000);
     }
 
     /**
