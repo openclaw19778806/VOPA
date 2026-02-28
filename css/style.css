@@ -1,0 +1,936 @@
+/* VOPA × NAST 互動式網頁簡報樣式 */
+/* 設計系統: 醫療藍系 */
+
+:root {
+    --primary-blue: #0066FF;
+    --deep-blue: #0A2540;
+    --accent-teal: #00C9A7;
+    --white: #FFFFFF;
+    --light-gray: #F6F9FC;
+    --text-gray: #5B6B7F;
+    --gradient-hero: linear-gradient(135deg, #0A2540 0%, #1a3a5c 50%, #0A2540 100%);
+    --gradient-accent: linear-gradient(135deg, #0066FF 0%, #00C9A7 100%);
+    --shadow-card: 0 10px 40px rgba(10, 37, 64, 0.15);
+    --shadow-hover: 0 20px 60px rgba(10, 37, 64, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--deep-blue);
+    color: var(--white);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 導航列 */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(10, 37, 64, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-progress {
+    flex: 1;
+    max-width: 300px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 0 30px;
+    overflow: hidden;
+}
+
+.nav-progress-bar {
+    height: 100%;
+    background: var(--gradient-accent);
+    width: 8.33%;
+    transition: width 0.5s ease;
+}
+
+.nav-page {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 投影片容器 */
+.slides-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 投影片基礎樣式 */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px 60px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(100px);
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.slide.prev {
+    transform: translateX(-100px);
+}
+
+.slide-content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Slide 1: Hero */
+.slide-hero {
+    background: var(--gradient-hero);
+}
+
+.hero-graphic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.wave-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-teal);
+    border-radius: 50%;
+    animation: pulse 3s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.hero-title {
+    margin-bottom: 30px;
+}
+
+.hero-title-main {
+    display: block;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -2px;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-title-sub {
+    display: block;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-tagline {
+    font-size: 1.3rem;
+    color: var(--accent-teal);
+    margin-bottom: 50px;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.hero-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+.logo-item {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.logo-separator {
+    font-size: 1.5rem;
+    color: var(--accent-teal);
+    font-weight: 300;
+}
+
+/* Slide 標題樣式 */
+.slide-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.3;
+}
+
+.slide-title .highlight {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 問題陳述頁 */
+.problem-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-card);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* 解決方案頁 */
+.solution-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.solution-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.solution-box.vopa {
+    border-color: var(--primary-blue);
+}
+
+.solution-box.nast {
+    border-color: var(--accent-teal);
+}
+
+.solution-box:hover {
+    transform: scale(1.02);
+}
+
+.solution-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.solution-box.vopa .solution-logo {
+    color: var(--primary-blue);
+}
+
+.solution-box.nast .solution-logo {
+    color: var(--accent-teal);
+}
+
+.solution-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.solution-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.solution-stat {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.solution-box.vopa .solution-stat {
+    color: var(--primary-blue);
+}
+
+.solution-box.nast .solution-stat {
+    color: var(--accent-teal);
+}
+
+.solution-connector {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--accent-teal);
+}
+
+.solution-value {
+    background: var(--gradient-accent);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.solution-value h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.solution-value p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 整合場景頁 */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.scenario-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: left;
+    border-left: 4px solid var(--accent-teal);
+    transition: all 0.3s ease;
+}
+
+.scenario-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.scenario-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--accent-teal);
+    color: var(--deep-blue);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.scenario-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.scenario-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.scenario-value {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--accent-teal);
+}
+
+/* 市場機會頁 */
+.market-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.market-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: left;
+}
+
+.market-card h3 {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.market-size {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.market-growth {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 12px;
+    background: rgba(0, 201, 167, 0.2);
+    color: var(--accent-teal);
+    font-size: 0.85rem;
+    border-radius: 20px;
+}
+
+/* 競爭優勢頁 */
+.advantage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.advantage-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-hover);
+}
+
+.advantage-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.advantage-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.advantage-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* 商業模式頁 */
+.revenue-models {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.revenue-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.revenue-card:hover {
+    transform: scale(1.05);
+}
+
+.revenue-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.revenue-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.revenue-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* 時程規劃頁 */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.timeline-phase {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-teal);
+    border-radius: 50%;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-phase h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.timeline-phase .weeks {
+    color: var(--accent-teal);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.timeline-phase p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+/* 團隊頁 */
+.team-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.member-photo {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.member-name {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.member-role {
+    color: var(--accent-teal);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.member-credentials {
+    list-style: none;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.member-credentials li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.member-credentials li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-teal);
+}
+
+.team-connector {
+    text-align: center;
+}
+
+.connector-symbol {
+    font-size: 2rem;
+    color: var(--accent-teal);
+    font-weight: 300;
+}
+
+.connector-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+}
+
+/* CTA 頁 */
+.cta-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.cta-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.cta-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.cta-card.cta-hospital:hover {
+    border-color: var(--primary-blue);
+}
+
+.cta-card.cta-investor:hover {
+    border-color: var(--accent-teal);
+}
+
+.cta-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.cta-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.cta-desc {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.cta-benefits {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.cta-benefits li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cta-benefits li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-teal);
+}
+
+.cta-button {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button.hospital-btn {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.cta-button.investor-btn {
+    background: var(--accent-teal);
+    color: var(--deep-blue);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 導航按鈕 */
+.nav-buttons {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.nav-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* 頁碼指示器 */
+.page-indicators {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.page-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-indicator.active {
+    background: var(--accent-teal);
+    transform: scale(1.3);
+}
+
+/* 觸控提示 */
+.swipe-hint {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    animation: bounce 2s infinite;
+    z-index: 100;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+    .slide {
+        padding: 80px 40px 60px;
+    }
+    
+    .advantage-grid,
+    .revenue-models {
+        grid-template-columns: 1fr;
+    }
+    
+    .solution-comparison {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .solution-connector {
+        transform: rotate(90deg);
+    }
+    
+    .team-container {
+        flex-direction: column;
+    }
+    
+    .cta-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 20px;
+    }
+    
+    .nav-progress {
+        display: none;
+    }
+    
+    .slide {
+        padding: 80px 20px 100px;
+    }
+    
+    .problem-stats,
+    .scenario-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .market-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .timeline::before {
+        display: none;
+    }
+    
+    .page-indicators {
+        display: none;
+    }
+    
+    .hero-logos {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-separator {
+        transform: rotate(90deg);
+    }
+}
+
+/* 動畫類別 */
+.animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* 數字滾動動畫 */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.count-animation {
+    animation: countUp 0.8s ease forwards;
+}
