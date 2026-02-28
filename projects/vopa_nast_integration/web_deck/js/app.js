@@ -143,6 +143,40 @@
     }
 
     /**
+     * 數字滾動動畫
+     */
+    function animateNumber(element, start, end, duration, prefix, suffix) {
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // 使用 easeOutQuart 緩動函數
+            const easeProgress = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(start + (end - start) * easeProgress);
+            
+            // 格式化數字顯示
+            let displayValue;
+            if (end >= 1000000) {
+                displayValue = (current / 10000).toFixed(0);
+            } else if (end >= 1000) {
+                displayValue = current.toLocaleString();
+            } else {
+                displayValue = current.toString();
+            }
+            
+            element.textContent = prefix + displayValue + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+        
+        requestAnimationFrame(update);
+    }
+
+    /**
      * 當前幻燈片動畫
      */
     function animateCurrentSlide() {
@@ -163,16 +197,30 @@
             }, 100 + index * 100);
         });
 
-        // 數字動畫
+        // 數字動畫 - 滾動計數效果
         const numbers = currentSlide.querySelectorAll('.stat-number, .market-size');
-        numbers.forEach(num => {
-            const finalValue = num.textContent;
-            num.style.opacity = '0';
+        numbers.forEach((num, index) => {
+            const target = parseInt(num.getAttribute('data-target')) || 0;
+            const suffix = num.getAttribute('data-suffix') || '';
+            const prefix = num.getAttribute('data-prefix') || '';
+            const duration = 2000; // 動畫持續時間 (ms)
+            const startDelay = 500 + index * 200; // 開始延遲
             
-            setTimeout(() => {
-                num.style.transition = 'opacity 0.5s';
-                num.style.opacity = '1';
-            }, 300);
+            if (target > 0) {
+                num.style.opacity = '0';
+                
+                setTimeout(() => {
+                    num.style.transition = 'opacity 0.3s';
+                    num.style.opacity = '1';
+                    animateNumber(num, 0, target, duration, prefix, suffix);
+                }, startDelay);
+            } else {
+                num.style.opacity = '0';
+                setTimeout(() => {
+                    num.style.transition = 'opacity 0.5s';
+                    num.style.opacity = '1';
+                }, 300);
+            }
         });
     }
 
