@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOPA × NAST 整合方案 | AI 語音病歷與快速抗生素檢測</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 導航 -->
+    <nav class="nav">
+        <div class="nav-brand">VOPA × NAST</div>
+        <div class="nav-progress">
+            <div class="nav-progress-bar" id="progressBar"></div>
+        </div>
+        <div class="nav-controls">
+            <span class="nav-page"><span id="currentPage">1</span> / 12</span>
+        </div>
+    </nav>
+
+    <!-- 投影片容器 -->
+    <div class="slides-container" id="slidesContainer">
+        
+        <!-- Slide 1: Hero 封面頁 -->
+        <section class="slide slide-hero active" data-index="0">
+            <div class="slide-content">
+                <div class="hero-graphic">
+                    <div class="wave-animation"></div>
+                    <div class="chip-lines"></div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="hero-title-main">VOPA × NAST</span>
+                    <span class="hero-title-sub">AI 語音病歷與快速抗生素檢測的整合願景</span>
+                </h1>
+                <p class="hero-tagline">打造下一代智慧感染管制平台</p>
+                <div class="hero-logos">
+                    <div class="logo-item">
+                        <span class="logo-text">Liaison Intelligence</span>
+                    </div>
+                    <span class="logo-separator">×</span>
+                    <div class="logo-item">
+                        <span class="logo-text">MedFluid</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: 問題陳述頁 -->
+        <section class="slide slide-problem" data-index="1">
+            <div class="slide-content">
+                <h2 class="slide-title">全球危機</h2>
+                <div class="problem-main">
+                    <div class="stat-number" data-target="4950000" data-suffix="萬">0</div>
+                    <div class="stat-label">人死於抗生素抗藥性 (AMR)</div>
+                </div>
+                <div class="problem-subtitle">成為全球十大健康威脅</div>
+                <div class="problem-cards">
+                    <div class="problem-card">
+                        <div class="problem-icon">⏱️</div>
+                        <div class="problem-stat">7天</div>
+                        <div class="problem-desc">傳統檢測耗時</div>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">⚠️</div>
+                        <div class="problem-stat">錯過</div>
+                        <div class="problem-desc">黃金治療窗口</div>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">🔌</div>
+                        <div class="problem-stat">割裂</div>
+                        <div class="problem-desc">病歷與檢測數據</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: 解決方案頁 -->
+        <section class="slide slide-solution" data-index="2">
+            <div class="slide-content">
+                <h2 class="slide-title">1 + 1 > 2 的整合價值</h2>
+                <div class="solution-comparison">
+                    <div class="solution-box vopa-box">
+                        <div class="solution-header">
+                            <div class="solution-logo">VOPA</div>
+                            <div class="solution-type">AI 語音病歷</div>
+                        </div>
+                        <div class="solution-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🎙️</div>
+                                <div class="benefit-text">語音 → SOAP 自動生成</div>
+                            </div>
+                            <div class="benefit-stat">
+                                <div class="progress-ring" data-progress="50">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                                        <circle class="progress-fill" cx="50" cy="50" r="45"/>
+                                    </svg>
+                                    <div class="progress-text">50%</div>
+                                </div>
+                                <div class="benefit-label">節省書寫時間</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="solution-connector">
+                        <div class="connector-plus">+</div>
+                        <div class="connector-arrow">→</div>
+                        <div class="connector-result">整合 = 即時決策支持系統</div>
+                    </div>
+                    <div class="solution-box nast-box">
+                        <div class="solution-header">
+                            <div class="solution-logo">NAST</div>
+                            <div class="solution-type">微流體快速檢測</div>
+                        </div>
+                        <div class="solution-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🧪</div>
+                                <div class="benefit-text">6-32小時完成 AST</div>
+                            </div>
+                            <div class="benefit-stat">
+                                <div class="progress-ring nast-ring" data-progress="85">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                                        <circle class="progress-fill" cx="50" cy="50" r="45"/>
+                                    </svg>
+                                    <div class="progress-text">85%</div>
+                                </div>
+                                <div class="benefit-label">縮短檢測時間</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: P0 整合場景 -->
+        <section class="slide slide-p0" data-index="3">
+            <div class="slide-content">
+                <h2 class="slide-title">P0 整合場景 — 自動化數據流</h2>
+                <h3 class="slide-subtitle">檢測結果自動導入病歷</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <div class="flow-icon">🧪</div>
+                        <div class="flow-label">NAST 檢測完成</div>
+                        <div class="flow-time">6-32小時</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head">▶</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">🔌</div>
+                        <div class="flow-label">API 傳輸</div>
+                        <div class="flow-time highlight">即時</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head">▶</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">📝</div>
+                        <div class="flow-label">VOPA 自動填入</div>
+                        <div class="flow-time highlight">即時</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head">▶</div>
+                    </div>
+                    <div class="flow-step final">
+                        <div class="flow-icon">✅</div>
+                        <div class="flow-label">病歷完成</div>
+                        <div class="flow-time success">完成</div>
+                    </div>
+                </div>
+                <div class="value-proposition">
+                    <div class="value-icon">💡</div>
+                    <div class="value-text">
+                        <strong>價值</strong>：每筆病歷節省 <span class="highlight-number">5-10 分鐘</span>，零人為錯誤
+                    </div>
+                </div>
+                <div class="time-comparison">
+                    <div class="time-old">
+                        <span class="time-label">傳統流程</span>
+                        <span class="time-value">7 天</span>
+                    </div>
+                    <div class="time-vs">VS</div>
+                    <div class="time-new">
+                        <span class="time-label">整合方案</span>
+                        <span class="time-value">6-32 小時</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: P1 整合場景 - AI決策 -->
+        <section class="slide slide-ai" data-index="4">
+            <div class="slide-content">
+                <h2 class="slide-title">P1 整合場景 — AI 決策支持</h2>
+                <h3 class="slide-subtitle">AI 輔助抗生素選擇建議</h3>
+                <div class="ai-brain">
+                    <div class="brain-core">
+                        <div class="brain-number" data-target="132">0</div>
+                        <div class="brain-label">個臨床指引</div>
+                    </div>
+                    <div class="brain-waves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+                <div class="ai-description">
+                    結合 <strong>132 個臨床指引</strong> + <strong>NAST 檢測數據</strong>
+                    <br>→ 即時生成精準用藥建議
+                </div>
+                <div class="ai-benefits">
+                    <div class="ai-benefit-card">
+                        <div class="ai-benefit-icon">🛡️</div>
+                        <div class="ai-benefit-text">降低濫用風險</div>
+                    </div>
+                    <div class="ai-benefit-card">
+                        <div class="ai-benefit-icon">⚡</div>
+                        <div class="ai-benefit-text">加速臨床決策</div>
+                    </div>
+                    <div class="ai-benefit-card">
+                        <div class="ai-benefit-icon">🎯</div>
+                        <div class="ai-benefit-text">符合精準醫療趨勢</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: 院級管理視角 -->
+        <section class="slide slide-dashboard" data-index="5">
+            <div class="slide-content">
+                <h2 class="slide-title">院級管理視角</h2>
+                <h3 class="slide-subtitle">感染管制即時儀表板</h3>
+                <div class="dashboard-mockup">
+                    <div class="dashboard-kpis">
+                        <div class="kpi-card">
+                            <div class="kpi-value" data-target="847">0</div>
+                            <div class="kpi-label">本月檢測數</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value" data-target="23">0</div>
+                            <div class="kpi-label">異常警示</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value" data-target="98">0</div>
+                            <div class="kpi-label">% 準時完成</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">A+</div>
+                            <div class="kpi-label">評鑑等級</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-charts">
+                        <div class="chart-container">
+                            <div class="chart-title">院內 AMR 趨勢</div>
+                            <div class="chart-placeholder trend-chart">
+                                <div class="trend-line"></div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">抗生素使用分析</div>
+                            <div class="chart-placeholder pie-chart">
+                                <div class="pie-segment s1"></div>
+                                <div class="pie-segment s2"></div>
+                                <div class="pie-segment s3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-features">
+                    <div class="feature-tag">📊 院內 AMR 趨勢監控</div>
+                    <div class="feature-tag">📈 抗生素使用分析</div>
+                    <div class="feature-tag">✅ 符合醫院評鑑要求</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: 市場機會 -->
+        <section class="slide slide-market" data-index="6">
+            <div class="slide-content">
+                <h2 class="slide-title">市場機會</h2>
+                <div class="market-main">
+                    <div class="market-currency">$</div>
+                    <div class="market-number" data-target="50">0</div>
+                    <div class="market-unit">億</div>
+                </div>
+                <div class="market-subtitle">AMR 檢測市場 (2027)</div>
+                <div class="market-stats">
+                    <div class="market-stat-item">
+                        <div class="market-stat-value">$280億</div>
+                        <div class="market-stat-label">智慧病歷系統</div>
+                        <div class="market-stat-cagr">CAGR 14.2%</div>
+                    </div>
+                    <div class="market-stat-item highlight">
+                        <div class="market-stat-value">$50億</div>
+                        <div class="market-stat-label">全球 AMR 檢測</div>
+                        <div class="market-stat-cagr">CAGR 7.8%</div>
+                    </div>
+                    <div class="market-stat-item">
+                        <div class="market-stat-value">$150億</div>
+                        <div class="market-stat-label">台灣數位轉型</div>
+                        <div class="market-stat-cagr">政府重點投資</div>
+                    </div>
+                </div>
+                <div class="market-insight">
+                    <span class="insight-icon">🎯</span>
+                    <span class="insight-text">整合方案搶佔雙賽道交會點</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: 競爭優勢 -->
+        <section class="slide slide-advantage" data-index="7">
+            <div class="slide-content">
+                <div class="advantage-header">
+                    <span class="advantage-badge">市場唯一</span>
+                    <h2 class="slide-title">為什麼是我們？</h2>
+                </div>
+                <div class="advantage-tagline">
+                    結合「語音病歷 + 快速檢測」
+                </div>
+                <div class="advantage-cards">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">👨‍⚕️</div>
+                        <h3 class="advantage-title">神經外科醫師親自設計</h3>
+                        <p class="advantage-desc">懂臨床痛點、懂市場需求、懂產品細節</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">🏭</div>
+                        <h3 class="advantage-title">台灣製造優勢</h3>
+                        <p class="advantage-desc">供應鏈穩定、客製彈性、品質保證</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">🔒</div>
+                        <h3 class="advantage-title">雙技術壁壘</h3>
+                        <p class="advantage-desc">AI 語音識別 + 微流體晶片專利保護</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: 商業模式 -->
+        <section class="slide slide-business" data-index="8">
+            <div class="slide-content">
+                <h2 class="slide-title">清晰的多層營收結構</h2>
+                <div class="business-pyramid">
+                    <div class="business-tier tier-1">
+                        <div class="tier-icon">☁️</div>
+                        <div class="tier-content">
+                            <h3 class="tier-name">VOPA</h3>
+                            <div class="tier-model">SaaS 訂閱</div>
+                            <div class="tier-pricing">月費/床位計價</div>
+                        </div>
+                    </div>
+                    <div class="business-connector"></div>
+                    <div class="business-tier tier-2">
+                        <div class="tier-icon">🧪</div>
+                        <div class="tier-content">
+                            <h3 class="tier-name">NAST</h3>
+                            <div class="tier-model">設備 + 耗材</div>
+                            <div class="tier-pricing">試劑 recurrent revenue</div>
+                        </div>
+                    </div>
+                    <div class="business-connector"></div>
+                    <div class="business-tier tier-3">
+                        <div class="tier-icon">🤝</div>
+                        <div class="tier-content">
+                            <h3 class="tier-name">整合方案</h3>
+                            <div class="tier-model">B2B 醫院合約</div>
+                            <div class="tier-pricing">專案制 + 維運年約</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="business-goal">
+                    <div class="goal-icon">🎯</div>
+                    <div class="goal-text">
+                        目標：<span class="goal-number" data-target="10">0</span> 家醫學中心試點（三年內）
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: 開發時程 -->
+        <section class="slide slide-timeline" data-index="9">
+            <div class="slide-content">
+                <h2 class="slide-title">12週從概念到商業驗證</h2>
+                <div class="timeline-container">
+                    <div class="timeline-line">
+                        <div class="timeline-progress" id="timelineProgress"></div>
+                    </div>
+                    <div class="timeline-phases">
+                        <div class="phase" data-phase="1">
+                            <div class="phase-dot"></div>
+                            <div class="phase-content">
+                                <div class="phase-week">第 2-4 週</div>
+                                <h3 class="phase-title">Phase 1: MVP整合</h3>
+                                <div class="phase-milestone">✅ 資料串接完成</div>
+                            </div>
+                        </div>
+                        <div class="phase" data-phase="2">
+                            <div class="phase-dot"></div>
+                            <div class="phase-content">
+                                <div class="phase-week">第 6-8 週</div>
+                                <h3 class="phase-title">Phase 2: AI功能</h3>
+                                <div class="phase-milestone">🤖 抗生素建議上線</div>
+                            </div>
+                        </div>
+                        <div class="phase" data-phase="3">
+                            <div class="phase-dot"></div>
+                            <div class="phase-content">
+                                <div class="phase-week">第 10-12 週</div>
+                                <h3 class="phase-title">Phase 3: 商業推廣</h3>
+                                <div class="phase-milestone">🏥 醫院試點啟動</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-tagline">
+                    <span class="tagline-icon">🚀</span>
+                    快速迭代，敏捷驗證市場
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: 團隊頁 -->
+        <section class="slide slide-team" data-index="10">
+            <div class="slide-content">
+                <h2 class="slide-title">臨床 + 工程的完美結合</h2>
+                <div class="team-container">
+                    <div class="team-member dr-chou">
+                        <div class="member-photo">
+                            <div class="photo-placeholder">👨‍⚕️</div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">周毓霖醫師</h3>
+                            <div class="member-role">CMO & Co-Founder</div>
+                            <ul class="member-credentials">
+                                <li>神經外科專科醫師 13年經驗</li>
+                                <li>重仁骨科醫院副院長</li>
+                                <li>懂臨床、懂市場、懂產品</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="team-connector">
+                        <div class="connector-symbol">×</div>
+                        <div class="connector-label">完美結合</div>
+                    </div>
+                    <div class="team-member bon-lee">
+                        <div class="member-photo">
+                            <div class="photo-placeholder">👨‍💼</div>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Bon Lee</h3>
+                            <div class="member-role">CEO (MedFluid)</div>
+                            <ul class="member-credentials">
+                                <li>微流體晶片 14年研發經驗</li>
+                                <li>多項國際專利持有者</li>
+                                <li>技術商品化專家</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: CTA 頁 -->
+        <section class="slide slide-cta" data-index="11">
+            <div class="slide-content">
+                <h2 class="slide-title">邀請您成為改變的夥伴</h2>
+                <div class="cta-container">
+                    <div class="cta-card cta-hospital">
+                        <div class="cta-icon">🏥</div>
+                        <h3 class="cta-title">醫院試點合作</h3>
+                        <p class="cta-desc">
+                            尋找 <strong>3-5 家具前瞻性之醫學中心</strong>
+                        </p>
+                        <ul class="cta-benefits">
+                            <li>優先試用整合方案</li>
+                            <li>共同優化產品</li>
+                            <li>專屬技術支援</li>
+                        </ul>
+                        <button class="cta-button hospital-btn">申請試點</button>
+                    </div>
+                    <div class="cta-card cta-investor">
+                        <div class="cta-icon">💼</div>
+                        <h3 class="cta-title">投資機會</h3>
+                        <p class="cta-desc">
+                            <strong>Pre-A 輪募資進行中</strong>
+                        </p>
+                        <ul class="cta-benefits">
+                            <li>加速認證與市場拓展</li>
+                            <li>搶佔 AMR 檢測藍海市場</li>
+                            <li>醫療 AI 成長潛力</li>
+                        </ul>
+                        <button class="cta-button investor-btn">投資洽詢</button>
+                    </div>
+                </div>
+                <div class="cta-contact">
+                    <div class="contact-email">📧 contact@liaison-intel.com</div>
+                    <div class="cta-logos">
+                        <span class="cta-logo-text">Liaison Intelligence</span>
+                        <span class="cta-logo-separator">×</span>
+                        <span class="cta-logo-text">MedFluid</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 導航按鈕 -->
+    <div class="nav-buttons">
+        <button class="nav-btn prev-btn" id="prevBtn" aria-label="上一頁">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="nav-btn next-btn" id="nextBtn" aria-label="下一頁">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- 頁碼指示器 -->
+    <div class="page-indicators" id="pageIndicators"></div>
+
+    <!-- 觸控提示 -->
+    <div class="swipe-hint" id="swipeHint">
+        <span class="swipe-icon">👆</span>
+        <span class="swipe-text">滑動切換頁面</span>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
